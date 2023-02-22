@@ -1,0 +1,2 @@
+include ':client-sdk-silent-auth'
+rootProject.name = "client-sdk-silent-auth"
