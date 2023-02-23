@@ -1,39 +1,6 @@
 # Vonage Android Silent Auth SDK
 
-[![License][license-image]][license-url]
-
-The only purpose of the SDK is to force the data cellular connectivity prior to call a public URL, and will return the following JSON response
-
-* **Success**
-  When the data connectivity has been achieved and a response has been received from the url endpoint
-```
-{
-"http_status": string, // HTTP status related to the url
-"response_body" : { // optional depending on the HTTP status
-           ... // the response body of the opened url 
-           ... // see API doc for /device_ip and /redirect
-        },
-"debug" : {
-    "device_info": string, 
-    "url_trace" : string
-    }
-}
-```
-
-* **Error**
-  When data connectivity is not available and/or an internal SDK error occurred
-
-```
-{
-"error" : string,
-"error_description": string,
-"debug" : {
-    "device_info": string, 
-    "url_trace" : string
-    }
-}
-```
-Potential error codes: `sdk_no_data_connectivity`, `sdk_connection_error`, `sdk_redirect_error`, `sdk_error`.
+Vonage Verify Silent Authentication uses a mobile phone's Subscriber Identity Module (SIM) to prove a user's identity, without any user input. This SDK enables making a HTTP request over cellular even when on WiFi.
 
 ## Installation
 
@@ -75,3 +42,40 @@ val resp: JSONObject = VGSilentAuthClient.getInstance().openWithDataCellular(URL
     }
 }
 ```
+
+## Responses
+
+* **Success**
+  When the data connectivity has been achieved and a response has been received from the url endpoint
+```
+{
+"http_status": string, // HTTP status related to the url
+"response_body" : { // optional depending on the HTTP status
+           ... // the response body of the opened url 
+           ... // see API doc for /device_ip and /redirect
+        },
+"debug" : {
+    "device_info": string, 
+    "url_trace" : string
+    }
+}
+```
+
+* **Error**
+  When data connectivity is not available and/or an internal SDK error occurred
+
+```
+{
+"error" : string,
+"error_description": string,
+"debug" : {
+    "device_info": string, 
+    "url_trace" : string
+    }
+}
+```
+Potential error codes: `sdk_no_data_connectivity`, `sdk_connection_error`, `sdk_redirect_error`, `sdk_error`.
+
+
+
+
