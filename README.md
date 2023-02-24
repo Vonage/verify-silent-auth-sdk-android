@@ -11,6 +11,20 @@ build.gradle -> dependencies add
     implementation 'commons-io:commons-io:2.4'
 ```
 
+## Permissions
+
+This SDK makes use of the following permissions as defined in the SDKs [AndroidManifest.xml](https://github.com/Vonage/verify-silent-auth-sdk-android/blob/main/client-sdk-silent-auth/src/main/AndroidManifest.xml)
+
+```xml
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+ ```
+
+These permissions are used to check the current network (WIFI vs cellular), and to make the require HTTP request over the cellular network. 
+
 ## Compatibility
 
  * **Minimum Android SDK**: SilentAuthSDK requires a minimum API level of 21 (Android 5)
