@@ -7,7 +7,7 @@ Vonage Verify Silent Authentication uses a mobile phone's Subscriber Identity Mo
 build.gradle -> dependencies add
 
 ```
-implementation 'com.vonage::client-sdk-silent-auth:1.0.0'
+implementation 'com.vonage:client-sdk-silent-auth:1.0.0'
 ```
 
 ## Permissions
