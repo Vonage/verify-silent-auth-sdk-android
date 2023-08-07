@@ -11,12 +11,12 @@ def localProperties = new Properties()
 localProperties.load(new FileInputStream(rootProject.file("local.properties")))
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
     buildToolsVersion "31.0.0"
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0.0"
 
@@ -107,19 +107,16 @@ signing {
 }
 
 dependencies {
+    implementation "com.silentauth.sdk:silentauth-sdk-android:1.0.5"
+
     implementation "androidx.appcompat:appcompat:$app_compat_version"
     //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.core:core-ktx:$ktx_version"
-    //Networking
-    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
-    implementation "commons-io:commons-io:2.4"
+
     // Testing
-    testImplementation 'org.robolectric:robolectric:4.9.2'
     testImplementation "junit:junit:${junit_version}"
-    testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp_version"
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
 }
