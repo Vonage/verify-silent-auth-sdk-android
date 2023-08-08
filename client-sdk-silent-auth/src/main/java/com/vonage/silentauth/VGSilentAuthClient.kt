@@ -22,7 +22,6 @@
  */
 package com.vonage.silentauth
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import java.net.URL
