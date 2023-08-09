@@ -23,19 +23,12 @@
 package com.vonage.silentauth
 
 import android.content.Context
-import android.os.Build
 import android.util.Log
-import androidx.annotation.NonNull
-import androidx.annotation.RequiresApi
-import com.vonage.silentauth.network.CellularNetworkManager
-import com.vonage.silentauth.network.NetworkManager
 import java.net.URL
 import org.json.JSONObject
+import com.silentauth.sdk.SilentAuthSDK
 
-@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-class VGSilentAuthClient private constructor(networkManager: CellularNetworkManager) {
-    private val networkManager: NetworkManager = networkManager
-
+class VGSilentAuthClient private constructor(private val client: SilentAuthSDK) {
     /**
      * Open a given url after forcing the data connectivity on the device
      *
@@ -43,10 +36,9 @@ class VGSilentAuthClient private constructor(networkManager: CellularNetworkMana
      * @param debug A flag to include or not the url trace in the response
      *
      */
-    fun openWithDataCellular(@NonNull url: URL, debug: Boolean): JSONObject {
+    fun openWithDataCellular(url: URL, debug: Boolean): JSONObject {
         Log.d("VGSilentAuthClient", "openWithDataCellular")
-        val networkManager: NetworkManager = getCellularNetworkManager()
-        return networkManager.openWithDataCellular(url, null, debug)
+        return client.openWithDataCellular(url, debug)
     }
 
     /**
@@ -57,28 +49,24 @@ class VGSilentAuthClient private constructor(networkManager: CellularNetworkMana
      * @param debug A flag to include or not the url trace in the response
      *
      */
-    fun openWithDataCellularAndAccessToken(@NonNull url: URL, accessToken: String?, debug: Boolean): JSONObject {
+    fun openWithDataCellularAndAccessToken(url: URL, accessToken: String?, debug: Boolean): JSONObject {
         Log.d("VGSilentAuthClient", "openWithDataCellularAndAccessToken")
-        val networkManager: NetworkManager = getCellularNetworkManager()
-        return networkManager.openWithDataCellular(url, accessToken, debug)
-    }
-
-    private fun getCellularNetworkManager(): NetworkManager {
-        return networkManager
+        return client.openWithDataCellularAndAccessToken(url, accessToken, debug)
     }
 
     companion object {
         private const val TAG = "VGSilentAuthClient"
+
         private var instance: VGSilentAuthClient? = null
         private var currentContext: Context? = null
 
         @Synchronized
         fun initializeSdk(context: Context): VGSilentAuthClient {
+            SilentAuthSDK.initializeSdk(context)
             var currentInstance = instance
             if (null == currentInstance || currentContext != context) {
-                val nm = CellularNetworkManager(context)
                 currentContext = context
-                currentInstance = VGSilentAuthClient(nm)
+                currentInstance = VGSilentAuthClient(SilentAuthSDK.initializeSdk(context))
             }
             instance = currentInstance
             return currentInstance
