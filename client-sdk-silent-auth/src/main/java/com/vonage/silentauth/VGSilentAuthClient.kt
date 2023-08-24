@@ -54,6 +54,19 @@ class VGSilentAuthClient private constructor(private val client: SilentAuthSDK) 
         return client.openWithDataCellularAndAccessToken(url, accessToken, debug)
     }
 
+    /**
+     * Post data to a given url after forcing the data connectivity on the device
+     *
+     * @param url The url to be posted to over a data cellular connectivity.
+     * @param headers Custom headers to be post to the given URL
+     * @param debug A flag to include or not the url trace in the response
+     *
+     */
+    fun postWithDataCellular(url: URL, headers: Map<String, String>, body: String?): JSONObject {
+        Log.d("VGSilentAuthClient", "postWithDataCellular")
+        return client.postWithDataCellular(url, headers, body)
+    }
+
     companion object {
         private const val TAG = "VGSilentAuthClient"
 
