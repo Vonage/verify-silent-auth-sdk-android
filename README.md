@@ -4,6 +4,18 @@ Vonage Verify Silent Authentication uses a mobile phone's Subscriber Identity Mo
 
 ## Installation
 
+Add the maven public repository `https://gitlab.com/api/v4/projects/40053021/packages/maven` to your gradle configuration e.g
+
+```
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://gitlab.com/api/v4/projects/40053021/packages/maven")
+    }
+}
+```
+
 build.gradle -> dependencies add
 
 ```
