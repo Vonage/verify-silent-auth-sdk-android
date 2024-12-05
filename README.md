@@ -1,3 +1,5 @@
+# :warning: This Library has been deprecated in favour of the [Vonage Client Library](https://github.com/Vonage/vonage-android-client-library) :warning: 
+
 # Vonage Android Silent Auth SDK
 
 Vonage Verify Silent Authentication uses a mobile phone's Subscriber Identity Module (SIM) to prove a user's identity, without any user input. This SDK enables making a HTTP request over cellular even when on WiFi.
